@@ -84,7 +84,7 @@ class Apiinit
         }
 
         if (!$verified) {
-            //Yuri
+            //Yuri lima fix deactivated action
             // $CI->app_modules->deactivate($module_name);
         }
 
