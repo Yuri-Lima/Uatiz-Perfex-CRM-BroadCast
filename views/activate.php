@@ -6,21 +6,21 @@
          <div class="col-md-6">
             <div class="panel_s">
                <div class="panel-body">
-			   <h4>Module activation</h4>
-			   <hr class="hr-panel-heading">
-			   Please activate your product, using your license purchase key (<a target="_blank" href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code-">where can I find my purchase key?</a>)
-			   <br><br>
-			   <?php echo form_open($submit_url, ['autocomplete'=>'off', 'id'=>'verify-form']); ?>
-                        <?php echo form_hidden('original_url', $original_url); ?> 
-                  		<?php echo form_hidden('module_name', $module_name); ?> 
-								<?php echo render_input('purchase_key', 'purchase_key', '', 'text', ['required'=>true]); ?>
-                  		<button id="submit" type="submit" class="btn btn-info pull-right"><?php echo _l('submit'); ?></button>
-                  	<?php echo form_close(); ?>
-               </div>
+         <h4>Module activation</h4>
+         <hr class="hr-panel-heading">
+         Please activate your product, using your license purchase key (<a target="_blank" href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code-">where can I find my purchase key?</a>)
+         <br><br>
+         <?php echo form_open($submit_url, ['autocomplete'=>'off', 'id'=>'verify-form']); ?>
+                     <?php echo form_hidden('original_url', $original_url); ?> 
+                     <?php echo form_hidden('module_name', $module_name); ?> 
+                     <?php echo render_input('purchase_key', 'purchase_key', '', 'text', ['required'=>true]); ?>
+                     <button id="submit" type="submit" class="btn btn-info pull-right"><?php echo _l('submit'); ?></button>
+                  <?php echo form_close(); ?>
             </div>
          </div>
-         <div class="col-md-6">
-		 </div>
+      </div>
+      <div class="col-md-6">
+      </div>
       </div>
    </div>
 </div>
