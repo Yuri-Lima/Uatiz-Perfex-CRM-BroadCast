@@ -6,10 +6,10 @@
             <div class="col-md-12">
                 <div class="panel_s">
                     <div class="panel-body">
-                     <div class="_buttons">
-                     	<?php if (has_permission('custom_email_and_sms_notifications', '', 'create') || has_permission('custom_email_and_sms_notifications', '', 'edit')) { ?>
-                        	<a href="#" data-toggle="modal" data-target="#add_edit_template" class="btn btn-info mbot30"><?php echo _l('add_edit_templates'); ?></a>
-				   		<?php } ?>
+                    <div class="_buttons">
+                    <?php if (has_permission('custom_email_and_sms_notifications', '', 'create') || has_permission('custom_email_and_sms_notifications', '', 'edit')) { ?>
+                        <a href="#" data-toggle="modal" data-target="#add_edit_template" class="btn btn-info mbot30"><?php echo _l('add_edit_templates'); ?></a>
+                    <?php } ?>
                     </div>
                     <div class="clearfix"></div>
                     <hr class="hr-panel-heading" />
@@ -27,9 +27,9 @@
 <?php $this->load->view('custom_email_and_sms_notifications/template_modal'); ?>
 <?php init_tail(); ?>
 <script>
-   $(function(){
+    $(function(){
         initDataTable('.table-template', window.location.href, [1], [1]);
-   });
+    });
 </script>
 </body>
 </html>
