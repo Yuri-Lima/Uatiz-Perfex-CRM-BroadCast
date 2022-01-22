@@ -99,7 +99,7 @@ class Apiinit
 
         if (!$actLib || !$verify_module || !$deregister) {
             $CI       = &get_instance();
-            //Yuri
+            // Yuri lima fix deactivated action
             // $CI->app_modules->deactivate($module_name);
         }
     }
