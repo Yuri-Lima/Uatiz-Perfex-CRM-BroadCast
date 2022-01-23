@@ -16,6 +16,7 @@
                         <?php echo render_input('template_name','template_name'); ?>
                         <?php echo render_textarea('template_content','template_content', '', [], [], '', 'tinymce'); ?>
                         <?php echo form_hidden('id'); ?>
+                        
                     </div>
                 </div>
             </div>
@@ -28,15 +29,16 @@
     </div>
 </div>
 <script>
+    var test;
     window.addEventListener('load',function(){
-       appValidateForm($('#custom-template-modal'), {
+        appValidateForm($('#custom-template-modal'), {
         template_name: 'required',
         template_content: 'required',
     }, custom_template_modal_submit);
 
-       $('#add_edit_template').on('show.bs.modal', function(e) {
+        $('#add_edit_template').on('show.bs.modal', function(e) {
 
-         init_editor();
+        init_editor();
 
         var invoker = $(e.relatedTarget);
         var group_id = $(invoker).data('id');
@@ -44,24 +46,26 @@
         $('#add_edit_template .edit-title').addClass('hide');
         $('#add_edit_template input[name="id"]').val('');
         $('#add_edit_template input[name="template_name"]').val('');
-        tinyMCE.activeEditor.setContent('');
+        tinyMCE.activeEditor.setContent('Adicione seu texto aqui!');
         // is from the edit button
         if (typeof(group_id) !== 'undefined') {
             $('#add_edit_template .add-title').addClass('hide');
             $('#add_edit_template .edit-title').removeClass('hide');
             requestGetJSON('custom_email_and_sms_notifications/template/get_item_by_id/' + group_id).done(function (response) {
-               $('#add_edit_template input[name="template_content"]').val(response.template_content);
-               $('#add_edit_template input[name="id"]').val(group_id);
-               $('#add_edit_template input[name="template_name"]').val(response.template_name);
-               tinyMCE.activeEditor.setContent(response.template_content);
+                $('#add_edit_template input[name="template_content"]').val(response.template_content);
+                $('#add_edit_template input[name="id"]').val(group_id);
+                $('#add_edit_template input[name="template_name"]').val(response.template_name);
+                tinyMCE.activeEditor.setContent(response.template_content);
             });
         }
     });
-   });
+});
+    
     function custom_template_modal_submit(form) {
         var data = $(form).serialize();
         var url = form.action;
         $.post(url, data).done(function(response) {
+            test = response
             response = JSON.parse(response);
             if (response.success == true) {
                 if($.fn.DataTable.isDataTable('.table-template')){
@@ -71,6 +75,7 @@
                     var groups = $('select[name="groups_in[]"]');
                     groups.prepend('<option value="'+response.id+'">'+response.name+'</option>');
                     groups.selectpicker('refresh');
+                    
                 }
                 alert_float('success', response.message);
             }
@@ -78,5 +83,4 @@
         });
         return false;
     }
-
 </script>

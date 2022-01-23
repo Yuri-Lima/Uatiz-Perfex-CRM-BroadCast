@@ -11,12 +11,15 @@
 				<div class="emailsmswrapper">
 				<form action="<?php print(admin_url('custom_email_and_sms_notifications/email_sms/sendEmailSms')) ?>" enctype='multipart/form-data' method="post">
 				<h5><?php echo _l('customer_or_leads'); ?></h5>
+
+				<!-- Yuri Lima id to customer_or_leads_groups -->
 				<select class="selectpicker"
 						name="customer_or_leads"
-						data-width="100%" id="customer_or_leads" onchange="show();">	      
-						<option value="">None</option>
-						<option value="customers">Customers (their contacts)</option>
-						<option value="leads">Leads</option>
+						data-width="100%" id="customer_or_leads_groups" onchange="show();">	      
+						<option value=""><?php echo _l('nothing_selected'); ?></option>
+						<option value="customers"><?php echo _l('customers_their_contacts'); ?></option> 
+						<option value="leads"><?php echo _l('leads'); ?></option>
+						<option value="groups"><?php echo _l('groups'); ?></option>
 				</select><br>
 				<div id="customers" style="display: none;">
 					<h5><?php echo _l('select_customer'); ?></h5>
@@ -42,35 +45,56 @@
 							<?php } ?>
 					</select>       	
 				</div>
+
+				<!-- Yuri Lima option Group -->
+				<div id="groups" style="display: none;">
+					<h5><?php echo _l('select_group'); ?></h5>
+					<select class="selectpicker"
+							data-toggle="<?php echo $this->input->get('select_group'); ?>"
+							name="select_group[]"
+							multiple="true"
+							data-width="100%">	      
+							<?php foreach ($groups as $groups) { ?>
+							<option value="<?php print($groups->id) ?>"><?php print($groups->name) ?></option>
+							<?php } ?>
+					</select>       	
+				</div>
 				<br>
 				<h5><?php echo _l('template_select_title'); ?></h5>
 				<select class="selectpicker"
-						name="template"
-						data-actions-box="true"
-						data-width="100%" id="tempaltes">
-						<option value="">Nothing Selected</option>
-						<?php foreach ($templates as $template) { ?>
-						<option value="<?php print($template['id']) ?>"><?php print($template['template_name']) ?></option>
-						<?php } ?>
-					</select>
+					name="template"
+					data-actions-box="true"
+					data-width="100%" id="tempaltes">
+					<option value=""><?php echo _l('nothing_selected'); ?></option>
+					<?php foreach ($templates as $template) { ?>
+					<option value="<?php print($template['id']) ?>"><?php print($template['template_name']) ?></option>
+					<?php } ?>
+				</select>
 					<br><br>
 					<h5><?php echo _l('write_your_notification'); ?></h5>
 					<script> function countChars(obj){ document.getElementById("charNum").innerHTML = '<i class="fa fa-calculator" aria-hidden="true"></i> '+obj.value.length; } </script>
-					<textarea placeholder="<?php echo _l('sms_textarea_placeholder'); ?>" name="message" rows="10" onkeyup="countChars(this);" class="form-control" id="msg_content"></textarea>
-				<p id="charNum"><i class="fa fa-calculator" aria-hidden="true"></i> 0</p>
+					<textarea placeholder="<?php echo _l('sms_textarea_placeholder'); ?>" name="message" rows="40" onkeyup="countChars(this);" class="form-control" id="msg_content"></textarea>
+					<p id="charNum"><i class="fa fa-calculator" aria-hidden="true"></i> 0</p>
 
-					<br><br>
+					<br>
 					<div>
 						<h5><?php echo _l('attachment_note'); ?></h5>
 						<input name="file_mail" value="filemail" class="check_label radio" type="file">
 					</div>
 					
-					<div class="check_div_mail">
-						<input name="mail_or_sms" value="mail" class="check_label radio" type="radio" checked style="display:inline-block"> <span class="mail-or-sms-choice"><?php echo _l('send_as_email'); ?></span>
+					<!-- Yuri Lima Uatiz Notificarion -->
+					<div class="check_div_uatiz">
+						<input name="mail_or_sms" value="uatiz" class="check_label radio" type="radio" checked style="display:inline-block"> <span class="mail-or-sms-choice"><?php echo _l('send_as_uatiz'); ?></span>
 					</div>
-					<div class="check_div_sms">
+
+					<div class="check_div_mail">
+						<input name="mail_or_sms" value="mail" class="check_label radio" type="radio" style="display:inline-block"> <span class="mail-or-sms-choice"><?php echo _l('send_as_email'); ?></span>
+					</div>
+
+					<div class="check_div_sms" id="sms">
 						<input name="mail_or_sms" value="sms" class="check_label radio" type="radio" style="display:inline-block"> <span class="mail-or-sms-choice"><?php echo _l('send_as_sms'); ?></span>
 					</div>
+
 					<br>
 					<button class="btn-tr btn btn-info invoice-form-submit transaction-submit"><?php echo _l('send'); ?></button>
 				</form>
@@ -83,29 +107,39 @@
 </div>
 <?php init_tail(); ?>
 <script type="text/javascript">
-
+	// Yuri Lima Groups
 	function show(){
-		var c_l = $('#customer_or_leads').val();
+		var c_l = $('#customer_or_leads_groups').val();
 		
 		if(c_l == 'customers'){
 			$('#customers').show();
 			$('#leads').hide();
+			$('#groups').hide();
+			$('#sms').show();
 		}else if(c_l == 'leads'){
 			$('#leads').show();
 			$('#customers').hide();
+			$('#groups').hide();
+			$('#sms').show();
+		}else if(c_l == 'groups'){
+			$('#groups').show();
+			$('#customers').hide();
+			$('#leads').hide();
+			$('#sms').hide();
 		}else{
 			$('#leads').hide();
 			$('#customers').hide();
+			$('#groups').hide();
 		}
 		
 	}
 
 	jQuery(document).ready(function($) {
 		$('#tempaltes').change(function(e){
-        	var template_info_url = "<?= base_url(CUSTOM_EMAIL_AND_SMS_NOTIFICATIONS_MODULE_NAME.'/template/get_template_data'); ?>";
-        	var template_id = $(this).val();
-        	if (template_id === "") {
-    			return false;
+			var template_info_url = "<?= base_url(CUSTOM_EMAIL_AND_SMS_NOTIFICATIONS_MODULE_NAME.'/template/get_template_data'); ?>";
+			var template_id = $(this).val();
+			if (template_id === "") {
+				return false;
 			}
 			$.ajax({
 				url: template_info_url,

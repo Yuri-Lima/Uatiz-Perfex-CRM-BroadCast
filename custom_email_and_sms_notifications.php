@@ -3,11 +3,11 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
-Module Name: Custom Whatsapp Msg, Emails & SMS Notifications
-Description: Contact your Customers' contacts or Leads, using Whatsapp/Emails/SMSes (templetized or custom ones)
-Version: 2.3.2
-Requires at least: 2.3.*
-Author: Yuri Lima [Uatiz Implementation]
+Module Name: Uatiz, Emails & SMS Notifications
+Description: Contact your Customers' contacts or Leads, using Whatsapp/Emails/SMSes
+Version: 1.1.1
+Requires at least: 1.1.*
+Author: Yuri Lima OBS:[Only Integration with Uatiz]
 Author URI: https://uatiz.app
 */
 
@@ -22,6 +22,7 @@ hooks()->add_filter('setup_custom_email_and_sms_notifications_items', 'app_admin
 hooks()->add_filter('module_custom_email_and_sms_notifications_action_links', 'module_custom_email_and_sms_notifications_action_links');
 hooks()->add_action('app_admin_footer', 'sms_and_email_assets');
 hooks()->add_action('admin_init', 'add_csrf_support');
+
 
 /**
  * Add CSRF Exclusion Support

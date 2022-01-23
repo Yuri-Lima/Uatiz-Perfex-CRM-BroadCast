@@ -1,6 +1,6 @@
 @media screen and (min-width: 1024px) {
     .emailsmswrapper {
-         width: 50%;
+        width: 50%;
     } 
 }
 
@@ -12,10 +12,15 @@
 .check_label {
     border: none !important;
 }
-
-.check_div_mail {
+/* Yuri Lima check_div_uatiz */
+.check_div_uatiz {
     margin-top: 80px;
 }
+
+/* Yuri Lima margin-top from 80px to 0px */
+.check_div_mail {
+    margin-top: 0px;
+} 
 
 .check_div_sms {
     margin-bottom: 10px;

@@ -25,6 +25,49 @@ if (!$CI->db->table_exists(db_prefix().'custom_templates')) {
     `staff_id` INT NOT NULL,
     `template_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
     `template_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-     PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`)
   ) ENGINE=InnoDB DEFAULT CHARSET='.$CI->db->char_set.';');
+}
+
+if (!$CI->db->table_exists(db_prefix() . 'uatiz')) {
+  $CI->db->query('CREATE TABLE `' . db_prefix() . "uatiz` (
+`id` int(11) NOT NULL,
+`subject` varchar(191) ,
+`endpoint_url` text NOT NULL, 
+`api_key` text NOT NULL,
+`description` text ,
+`start_date` date ,
+`end_date` date ,
+`uatiz_type` int(11) ,
+`contract_type` int(11) DEFAULT '0',
+`achievement` int(11) ,
+`notify_when_fail` tinyint(1)  DEFAULT '1',
+`notify_when_achieve` tinyint(1)  DEFAULT '1',
+`notified` int(11)  DEFAULT '0',
+`staff_id` int(11)  DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
+
+  $CI->db->query('ALTER TABLE `' . db_prefix() . 'uatiz`
+ADD PRIMARY KEY (`id`),
+ADD KEY `staff_id` (`staff_id`);');
+
+  $CI->db->query('ALTER TABLE `' . db_prefix() . 'uatiz`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1');
+}
+
+if (!$CI->db->table_exists(db_prefix() . 'uatiz_logs')) {
+  $CI->db->query('CREATE TABLE `' . db_prefix() . "uatiz_logs` (
+`id` int(11) NOT NULL,
+`description` mediumtext NOT NULL,
+`date` datetime NOT NULL,
+`staffid` varchar(100) DEFAULT NULL
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;" );
+
+  $CI->db->query('ALTER TABLE `' . db_prefix() . 'uatiz_logs`
+ADD PRIMARY KEY (`id`),
+ADD KEY `staffid` (`staffid`);');
+
+  $CI->db->query('ALTER TABLE `' . db_prefix() . 'uatiz_logs`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1');
 }

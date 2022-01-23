@@ -72,12 +72,12 @@ class Template extends AdminController
     }
 
     public function get_template_data(){
-    	if ($this->input->is_ajax_request()) {
-	        $post = $this->input->post();
-	        $where = ['id'=>$post['template_id']];
-	        $template_content = $this->custom_model->get('id',$where);
-	        echo json_encode($template_content);
-    	}
+        if ($this->input->is_ajax_request()) {
+            $post = $this->input->post();
+            $where = ['id'=>$post['template_id']];
+            $template_content = $this->custom_model->get('id',$where);
+            echo json_encode($template_content);
+        }
     }
 }
 ?>
