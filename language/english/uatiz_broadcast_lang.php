@@ -22,7 +22,8 @@ $lang['template_select_title'] = 'Load content from a template (optional):';
 $lang['nothing_selected'] = 'Nothing Selected';  
 $lang['customers_their_contacts'] = 'Customers (their contacts)';
 $lang['leads'] = 'Leads';
-$lang['groups'] = 'Groups (their contacts which belong from the clients)';
+$lang['groups'] = 'Groups (their contacts which belong from the clients)'; 
+$lang['template_subject'] = 'Subject';
 
 
 $lang['customer_or_leads'] = 'Customers, Leads or Groups?';

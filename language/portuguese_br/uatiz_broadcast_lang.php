@@ -23,6 +23,7 @@ $lang['nothing_selected'] = 'Nada Selecionado';
 $lang['customers_their_contacts'] = 'Clientes (Contatos do cliente)';
 $lang['leads'] = 'Leads';
 $lang['groups'] = 'Grupos (Contatos dos clientes que pertencem ao grupo)';
+$lang['template_subject'] = 'Assunto';
 
 $lang['customer_or_leads'] = 'Clientes, Leads ou Grupos?';
 $lang['select_customer'] = 'Selecione o cliente';

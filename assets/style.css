@@ -9,12 +9,17 @@
     vertical-align: text-bottom;
 }
 
+/* Yuri Lima div_uatiz_template_subject */
+.div_uatiz_template_subject {
+    margin-top: 20px;
+}
+
 .check_label {
     border: none !important;
 }
 /* Yuri Lima check_div_uatiz */
 .check_div_uatiz {
-    margin-top: 80px;
+    margin-top: 20px;
 }
 
 /* Yuri Lima margin-top from 80px to 0px */

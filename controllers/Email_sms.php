@@ -142,7 +142,8 @@ class Email_sms extends AdminController
             $template           = new StdClass();
             $template->message  = get_option('email_header') . $request['message'] . get_option('email_footer');
             $template->fromname = get_option('companyname');
-            $template->subject  = 'Email from '.get_option('companyname');
+            //Yuri Lima Added a Template Subject
+            $template->subject  = $request['template_subject']; //'Email from '.get_option('companyname');
 
             $template = parse_email_template($template);
 
