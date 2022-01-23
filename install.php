@@ -1,10 +1,10 @@
 <?php
 
 defined('BASEPATH') or exit('No direct script access allowed');
-add_option('custom_email_and_sms_notifications', 1);
+add_option('uatiz_broadcast', 1); //Last modifications about the module name -> custom_email_and_sms_notifications
 
-add_option('aside_custom_email_and_sms_notifications_active', '[]');
-add_option('setup_custom_email_and_sms_notifications_active', '[]');
+add_option('aside_uatiz_broadcast_active', '[]'); //Last modifications about the module name
+add_option('setup_uatiz_broadcast_active', '[]'); //Last modifications about the module name
 
 // Moving necessary dependencies to the correct place for clean installs of v2.7.0+
 $checkfolder = FCPATH . 'application/third_party/php-imap';

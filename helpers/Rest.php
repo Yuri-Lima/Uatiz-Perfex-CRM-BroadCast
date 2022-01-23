@@ -1,5 +1,5 @@
 <?php
-namespace modules\custom_email_and_sms_notifications\helpers;
+namespace modules\uatiz_broadcast\helpers;
 
 class Rest
 {

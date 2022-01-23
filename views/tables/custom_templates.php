@@ -19,7 +19,7 @@ foreach ($rResult as $aRow) {
         $row[] = $_data;
     }
     $options = icon_btn('#', 'pencil-square-o', 'btn-default', ['data-toggle' => 'modal', 'data-target' => '#add_edit_template', 'data-id' => $aRow['id']]);
-    $row[]   = $options .= icon_btn('custom_email_and_sms_notifications/template/delete/' . $aRow['id'], 'remove', 'btn-danger _delete');
+    $row[]   = $options .= icon_btn('uatiz_broadcast/template/delete/' . $aRow['id'], 'remove', 'btn-danger _delete');
 
     $output['aaData'][] = $row;
 }

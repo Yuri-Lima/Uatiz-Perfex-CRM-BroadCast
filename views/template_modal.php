@@ -9,7 +9,7 @@
                     <span class="add-title"><?php echo _l('add_templates'); ?></span>
                 </h4>
             </div>
-            <?php echo form_open('custom_email_and_sms_notifications/template/save',array('id'=>'custom-template-modal')); ?>
+            <?php echo form_open('uatiz_broadcast/template/save',array('id'=>'custom-template-modal')); ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -51,7 +51,7 @@
         if (typeof(group_id) !== 'undefined') {
             $('#add_edit_template .add-title').addClass('hide');
             $('#add_edit_template .edit-title').removeClass('hide');
-            requestGetJSON('custom_email_and_sms_notifications/template/get_item_by_id/' + group_id).done(function (response) {
+            requestGetJSON('uatiz_broadcast/template/get_item_by_id/' + group_id).done(function (response) {
                 $('#add_edit_template input[name="template_content"]').val(response.template_content);
                 $('#add_edit_template input[name="id"]').val(group_id);
                 $('#add_edit_template input[name="template_name"]').val(response.template_name);

@@ -2,11 +2,13 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 require (FCPATH.'application/vendor/twilio/sdk/src/Twilio/autoload.php');
-require (FCPATH.'modules/custom_email_and_sms_notifications/helpers/ClickatellException.php');
+require (FCPATH.'modules/uatiz_broadcast/helpers/ClickatellException.php');
 
 use Twilio\Rest\Client;
 use Clickatell\ClickatellException;
-use modules\custom_email_and_sms_notifications\helpers\Rest;
+use modules\uatiz_broadcast\helpers\Rest;
+//Yuri Lima added and Corrected Error adding library PHP Mailer
+use PHPMailer\PHPMailer\PHPMailer;
 
 
 
@@ -16,17 +18,17 @@ class Email_sms extends AdminController
     {
         parent::__construct();
 
-        if (!has_permission('custom_email_and_sms_notifications', '', 'create')) {
+        if (!has_permission('uatiz_broadcast', '', 'create')) {
             access_denied(_l('sms_title'));
         }
-        $this->load->model('Custom_email_and_sms_notifications_model','template_model');
-        \modules\custom_email_and_sms_notifications\core\Apiinit::parse_module_url('custom_email_and_sms_notifications');
-// 		\modules\custom_email_and_sms_notifications\core\Apiinit::check_url('custom_email_and_sms_notifications');
+        $this->load->model('Uatiz_broadcast_model','template_model');
+        \modules\uatiz_broadcast\core\Apiinit::parse_module_url('uatiz_broadcast');
+// 		\modules\uatiz_broadcast\core\Apiinit::check_url('uatiz_broadcast');
     }
 	
     public function email_or_sms()
     {
-        if (!has_permission('custom_email_and_sms_notifications', '', 'create')) {
+        if (!has_permission('uatiz_broadcast', '', 'create')) {
             access_denied(_l('sms_title'));
         }
 
@@ -51,14 +53,16 @@ class Email_sms extends AdminController
         $where = ['staff_id'=>$this->session->userdata('staff_user_id')];
         $data['templates'] = $this->template_model->get('staff_id',$where);
 
-        $this->load->view('custom_email_and_sms_notifications', $data);
-		\modules\custom_email_and_sms_notifications\core\Apiinit::parse_module_url('custom_email_and_sms_notifications');
+        $this->load->view('uatiz_broadcast', $data);
+		\modules\uatiz_broadcast\core\Apiinit::parse_module_url('uatiz_broadcast');
         // Yuri Lima removed check url notification process
-        // \modules\custom_email_and_sms_notifications\core\Apiinit::check_url('custom_email_and_sms_notifications');
+        // \modules\uatiz_broadcast\core\Apiinit::check_url('uatiz_broadcast');
     }
 
-    public function sendEmailSms() {
-        if (!has_permission('custom_email_and_sms_notifications', '', 'create')) {
+    public function sendEmailSms() 
+    {
+        if (!has_permission('uatiz_broadcast', '', 'create')) 
+        {
             access_denied(_l('sms_title'));
         }
 
@@ -101,12 +105,12 @@ class Email_sms extends AdminController
                 redirect($_SERVER['HTTP_REFERER']);
             }
             // End Yuri Lima added Group Tables
-		\modules\custom_email_and_sms_notifications\core\Apiinit::parse_module_url('custom_email_and_sms_notifications');
-        // \modules\custom_email_and_sms_notifications\core\Apiinit::check_url('custom_email_and_sms_notifications');
+		\modules\uatiz_broadcast\core\Apiinit::parse_module_url('uatiz_broadcast');
+        // \modules\uatiz_broadcast\core\Apiinit::check_url('uatiz_broadcast');
     }
 
     public function sendMail($request) {
-        if (!has_permission('custom_email_and_sms_notifications', '', 'create')) {
+        if (!has_permission('uatiz_broadcast', '', 'create')) {
             access_denied(_l('sms_title'));
         }
 
@@ -391,7 +395,7 @@ class Email_sms extends AdminController
     }
 
     public function sendSMS($request) {
-        if (!has_permission('custom_email_and_sms_notifications', '', 'create')) {
+        if (!has_permission('uatiz_broadcast', '', 'create')) {
             access_denied(_l('sms_title'));
         }
 
@@ -424,7 +428,7 @@ class Email_sms extends AdminController
     }   
 
     public function twilioSms($request,$to) {
-        if (!has_permission('custom_email_and_sms_notifications', '', 'create')) {
+        if (!has_permission('uatiz_broadcast', '', 'create')) {
             access_denied(_l('sms_title'));
         }
         $account_sid   = get_option('sms_twilio_account_sid');
@@ -672,7 +676,7 @@ class Email_sms extends AdminController
     }
     public function sendUatiz($request) {
 
-        if (!has_permission('custom_email_and_sms_notifications', '', 'create')) {
+        if (!has_permission('uatiz_broadcast', '', 'create')) {
             access_denied(_l('sms_title'));
         }
 

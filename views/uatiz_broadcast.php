@@ -9,7 +9,7 @@
 				<h3><?php echo _l('sms_title'); ?></h3>
 				<br>
 				<div class="emailsmswrapper">
-				<form action="<?php print(admin_url('custom_email_and_sms_notifications/email_sms/sendEmailSms')) ?>" enctype='multipart/form-data' method="post">
+				<form action="<?php print(admin_url('uatiz_broadcast/email_sms/sendEmailSms')) ?>" enctype='multipart/form-data' method="post">
 				<h5><?php echo _l('customer_or_leads'); ?></h5>
 
 				<!-- Yuri Lima id to customer_or_leads_groups -->
@@ -136,7 +136,7 @@
 
 	jQuery(document).ready(function($) {
 		$('#tempaltes').change(function(e){
-			var template_info_url = "<?= base_url(CUSTOM_EMAIL_AND_SMS_NOTIFICATIONS_MODULE_NAME.'/template/get_template_data'); ?>";
+			var template_info_url = "<?= base_url(UATIZ_BROADCAST_MODULE_NAME.'/template/get_template_data'); ?>";
 			var template_id = $(this).val();
 			if (template_id === "") {
 				return false;

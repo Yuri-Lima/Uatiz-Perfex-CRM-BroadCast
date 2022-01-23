@@ -1,5 +1,5 @@
 <?php 
-defined('BASEPATH') OR exit('No direct script access allowed');
+// defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-$config['product_item_id'] = "24851275";
+// $config['product_item_id'] = "24851275";

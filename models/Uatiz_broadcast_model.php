@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Custom_email_and_sms_notifications_model extends CI_Model {
+class Uatiz_broadcast_model extends CI_Model {
 	
 	protected $table = '';
     public function __construct()
@@ -54,4 +54,4 @@ class Custom_email_and_sms_notifications_model extends CI_Model {
 
 }
 
-/* End of file Custom_email_and_sms_notifications_model.php */
+/* End of file uatiz_broadcast_model.php */

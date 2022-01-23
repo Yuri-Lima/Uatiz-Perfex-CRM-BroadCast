@@ -6,8 +6,8 @@ class Template extends AdminController
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Custom_email_and_sms_notifications_model','custom_model');
-        if (!has_permission('custom_email_and_sms_notifications', '', 'create')) {
+        $this->load->model('Uatiz_broadcast_model','custom_model');
+        if (!has_permission('uatiz_broadcast', '', 'create')) {
             access_denied(_l('sms_title'));
         }
     }
@@ -15,9 +15,9 @@ class Template extends AdminController
     public function index()
     {
         if ($this->input->is_ajax_request()) {
-            $this->app->get_table_data(module_views_path(CUSTOM_EMAIL_AND_SMS_NOTIFICATIONS_MODULE_NAME, 'tables/custom_templates'));
+            $this->app->get_table_data(module_views_path(UATIZ_BROADCAST_MODULE_NAME, 'tables/custom_templates'));
         }
-        $this->load->view(CUSTOM_EMAIL_AND_SMS_NOTIFICATIONS_MODULE_NAME.'/add_edit_templates',[]);
+        $this->load->view(UATIZ_BROADCAST_MODULE_NAME.'/add_edit_templates',[]);
     }
 
     public function save($id=''){
@@ -50,7 +50,7 @@ class Template extends AdminController
     public function delete($id=''){
 
         if (!$id) {
-            redirect(admin_url('custom_email_and_sms_notifications/template'));
+            redirect(admin_url('uatiz_broadcast/template'));
         }
         $response = $this->custom_model->delete($id);
         if (true == $response) {
@@ -58,7 +58,7 @@ class Template extends AdminController
         } else {
             set_alert('warning', _l('problem_deleting', _l('template')));
         }
-        redirect(admin_url('custom_email_and_sms_notifications/template'));
+        redirect(admin_url('uatiz_broadcast/template'));
     }
 
     public function get_item_by_id($id)
