@@ -97,7 +97,7 @@
 						<p id="charNum"><i class="fa fa-calculator" aria-hidden="true"></i> 0</p>
 
 						<br>
-						<div>
+						<div id="attachment_note">
 							<h5><?php echo _l('attachment_note'); ?></h5>
 							<input name="file_mail" value="filemail" class="check_label radio" type="file">
 						</div>
@@ -156,8 +156,10 @@
 		if(checkedValue == "uatiz" || checkedValue == "sms")
 		{
 				$('#template_subject').hide();
+				$('#attachment_note').hide();
 			}else{
 				$('#template_subject').show();
+				$('#attachment_note').show();
 		}
 		$('#tempaltes').change(function(e){
 			var template_info_url = "<?= base_url(UATIZ_BROADCAST_MODULE_NAME.'/template/get_template_data'); ?>";

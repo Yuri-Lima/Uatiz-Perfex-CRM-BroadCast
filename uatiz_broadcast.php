@@ -120,7 +120,7 @@ function custom_email_and_sms_menuitem()
 
     $CI->app_menu->add_sidebar_children_item('uatizmenu', [
         'slug'     => 'main-menu-options',
-        'name'     => 'Send BroadCast',
+        'name'     => _l('send_broadcast'),
         'href'     => admin_url('uatiz_broadcast/email_sms/email_or_sms'),
         'position' => 9,
         'icon'     => 'fa fa-bullhorn'

@@ -703,7 +703,7 @@ class Email_sms extends AdminController
                 // print_r($Contact->phonenumber);
                 // echo "<br><br>";
                 $clean_msg = strip_tags($request['message']);
-                $message = "📢🤖 *BroadCast*\n\n{$clean_msg}";
+                $message = "{$clean_msg}";
                 $body = [
                     'number' => mask_phone_number($Contact->phonenumber),
                     'message' => $message
